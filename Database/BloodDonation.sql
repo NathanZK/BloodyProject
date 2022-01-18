@@ -34,7 +34,7 @@ CREATE TABLE `admin` (
   PRIMARY KEY (`ID`),
   KEY `persona_info_ID_idx` (`admin_info_ID`),
   CONSTRAINT `admin_info_ID` FOREIGN KEY (`admin_info_ID`) REFERENCES `personal_info` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (1,'Nathan Zelalem','a@gmail.com','Male','1999-02-01',1),(2,'Lillian Alehegn','l@gmail.com','Female','1999-02-05',3);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,13 +87,13 @@ CREATE TABLE `donor` (
   `Gender` enum('Male','Female') NOT NULL,
   `Bday` date NOT NULL,
   `donor_info_ID` int NOT NULL,
-  `donor_health_ID` int NOT NULL,
+  `donor_health_ID` int DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `donor_infO_ID_idx` (`donor_info_ID`),
   KEY `donor_health_ID_idx` (`donor_health_ID`),
   CONSTRAINT `donor_health_ID` FOREIGN KEY (`donor_health_ID`) REFERENCES `donor_health` (`ID`),
   CONSTRAINT `donor_infO_ID` FOREIGN KEY (`donor_info_ID`) REFERENCES `personal_info` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,6 +102,7 @@ CREATE TABLE `donor` (
 
 LOCK TABLES `donor` WRITE;
 /*!40000 ALTER TABLE `donor` DISABLE KEYS */;
+INSERT INTO `donor` VALUES (1,'Nahom','Behailu','b@gmail.com','Male','2000-01-01',2,NULL),(2,'Lealem','Kinfe','l@gmail.com','Male','2000-01-01',4,NULL);
 /*!40000 ALTER TABLE `donor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +203,7 @@ CREATE TABLE `personal_info` (
   `Address` varchar(100) NOT NULL,
   `PhoneNo` int NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,6 +212,7 @@ CREATE TABLE `personal_info` (
 
 LOCK TABLES `personal_info` WRITE;
 /*!40000 ALTER TABLE `personal_info` DISABLE KEYS */;
+INSERT INTO `personal_info` VALUES (1,'NatZel','0000','A.A',911232323),(2,'NahBeh','1111','Nowhere',911232321),(3,'LilAle','2222','Here',911232327),(4,'LeaKin','3333','Everywhere',911232328);
 /*!40000 ALTER TABLE `personal_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,4 +249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-14 11:05:33
+-- Dump completed on 2022-01-18 15:29:57
