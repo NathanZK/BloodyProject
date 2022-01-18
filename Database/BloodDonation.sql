@@ -30,10 +30,10 @@ CREATE TABLE `admin` (
   `Email` varchar(100) NOT NULL,
   `Gender` enum('Male','Female') NOT NULL,
   `Bday` date NOT NULL,
-  `Address` varchar(100) NOT NULL,
-  `Username` varchar(100) NOT NULL,
-  `Password` varchar(45) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `admin_info_ID` int NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `persona_info_ID_idx` (`admin_info_ID`),
+  CONSTRAINT `admin_info_ID` FOREIGN KEY (`admin_info_ID`) REFERENCES `personal_info` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -58,10 +58,7 @@ CREATE TABLE `donation_history` (
   `Date_donated` date NOT NULL,
   `Blood_Status` enum('Expired','Viable') NOT NULL,
   `Donation_Location` varchar(100) NOT NULL,
-  `donor` int NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `donorID_idx` (`donor`),
-  CONSTRAINT `donor` FOREIGN KEY (`donor`) REFERENCES `donor` (`ID`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -83,14 +80,18 @@ DROP TABLE IF EXISTS `donor`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `donor` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `FullName` varchar(100) NOT NULL,
+  `FirstName` varchar(100) NOT NULL,
+  `LastName` varchar(100) NOT NULL,
   `Email` varchar(100) NOT NULL,
   `Gender` enum('Male','Female') NOT NULL,
   `Bday` date NOT NULL,
-  `Address` varchar(100) NOT NULL,
-  `Username` varchar(100) NOT NULL,
-  `Password` varchar(45) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `donor_info_ID` int NOT NULL,
+  `donor_health_ID` int NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `donor_infO_ID_idx` (`donor_info_ID`),
+  KEY `donor_health_ID_idx` (`donor_health_ID`),
+  CONSTRAINT `donor_health_ID` FOREIGN KEY (`donor_health_ID`) REFERENCES `donor_health` (`ID`),
+  CONSTRAINT `donor_infO_ID` FOREIGN KEY (`donor_info_ID`) REFERENCES `personal_info` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -101,6 +102,40 @@ CREATE TABLE `donor` (
 LOCK TABLES `donor` WRITE;
 /*!40000 ALTER TABLE `donor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `donor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `donor_health`
+--
+
+DROP TABLE IF EXISTS `donor_health`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `donor_health` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `health_info_ID` int NOT NULL,
+  `inventory_ID` int NOT NULL,
+  `test_result_ID` int NOT NULL,
+  `donation_history_ID` int NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `health_info_ID_idx` (`health_info_ID`),
+  KEY `inventory_ID_idx` (`inventory_ID`),
+  KEY `test_result_ID_idx` (`test_result_ID`),
+  KEY `donation_history_ID_idx` (`donation_history_ID`),
+  CONSTRAINT `donation_history_ID` FOREIGN KEY (`donation_history_ID`) REFERENCES `donation_history` (`ID`),
+  CONSTRAINT `health_info_ID` FOREIGN KEY (`health_info_ID`) REFERENCES `health_info` (`ID`),
+  CONSTRAINT `inventory_ID` FOREIGN KEY (`inventory_ID`) REFERENCES `inventory` (`ID`),
+  CONSTRAINT `test_result_ID` FOREIGN KEY (`test_result_ID`) REFERENCES `test_result` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `donor_health`
+--
+
+LOCK TABLES `donor_health` WRITE;
+/*!40000 ALTER TABLE `donor_health` DISABLE KEYS */;
+/*!40000 ALTER TABLE `donor_health` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -115,10 +150,7 @@ CREATE TABLE `health_info` (
   `Blood_type` enum('A','B','AB','O') NOT NULL,
   `RhesusFactor` enum('+','-') NOT NULL,
   `Risks` varchar(100) DEFAULT NULL,
-  `DonorID` int NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `DonorID_idx` (`DonorID`),
-  CONSTRAINT `DonorID` FOREIGN KEY (`DonorID`) REFERENCES `donor` (`ID`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -141,13 +173,8 @@ DROP TABLE IF EXISTS `inventory`;
 CREATE TABLE `inventory` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `Amount` double NOT NULL,
-  `BloogBagNo` int NOT NULL,
-  `DateOfDonation` date NOT NULL,
-  `BloodGroup` varchar(45) NOT NULL,
-  `ID_Donor` int NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `ID_Donor_idx` (`ID_Donor`),
-  CONSTRAINT `ID_Donor` FOREIGN KEY (`ID_Donor`) REFERENCES `donor` (`ID`)
+  `BloodBagNo` int NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -161,6 +188,32 @@ LOCK TABLES `inventory` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `personal_info`
+--
+
+DROP TABLE IF EXISTS `personal_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `personal_info` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `Username` varchar(50) NOT NULL,
+  `Password` varchar(50) NOT NULL,
+  `Address` varchar(100) NOT NULL,
+  `PhoneNo` int NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personal_info`
+--
+
+LOCK TABLES `personal_info` WRITE;
+/*!40000 ALTER TABLE `personal_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personal_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `test_result`
 --
 
@@ -171,10 +224,7 @@ CREATE TABLE `test_result` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `Diseases` varchar(100) NOT NULL,
   `Heamoglobin` varchar(45) NOT NULL,
-  `Donor_ID` int NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `DonorID_idx` (`Donor_ID`),
-  CONSTRAINT `Donor_ID` FOREIGN KEY (`Donor_ID`) REFERENCES `donor` (`ID`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -196,4 +246,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-14  0:51:20
+-- Dump completed on 2022-01-14 11:05:33
