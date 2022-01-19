@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Create Donor Profile</title>
+    <link rel="stylesheet" href="/assets/css/admin/Profile.css">
+    
+  </head>
+  <body>
+    <% if(!created){ %>
+    <div class="body">
+        <h1>Create Account For Donor</h1>
+        <article><h2>Input the information in the space provided</h2><br>
+            
+            <form action="/admin/createdonorprofile" method="post">
+                <label for="firstname" >FirstName:</label>
+                <input type="text" id="firstname" name="firstname" required>             &nbsp;            
+                <label for="lastname">LastName:</label>
+                <input type="text" id="lastname" name="lastname" required>            
+                <br><br>
+                <label for="gender">Gender:</label>
+                <input type="radio" id ="male" name = "gender" value="male">
+                <label for="male"> Male </label>
+                <input type="radio" id = "female" name ="gender" value ="female">
+                <label for="female"> Female </label>
+                <br><br>
+                <label for="birthdate">BirthDate:</label>
+                <input type="date" name="birthdate" > 
+                <br><br>       
+                <label for="phonenumber">Phone Number:</label>
+                <input type ="number" name ="phonenumber">
+                <br><br>
+                <label for="email">Email:</label>
+                <input type ="text" name ="email" placeholder="a@gmail.com">
+                <br><br>
+                <label for="address" id="address">Home Address</label><br><br>
+                <label for="city" >City:</label>
+                <input type="text" name="city">            <br><br> 
+                <label for="subcity" >Subcity:</label>
+                <input type="text" name="subcity">        <br><br>
+                <label for="woreda" >Woreda:</label>
+                <input type="text" name ="woreda">            <br><br>
+                <label for="housenumber" >House Number:</label>
+                <input type="text" name="housenumber">           
+                <br><br>
+                <input class="submit" type="submit">
+            </form>
+    </div>
+ <% } else { %>
+  <div class="body">
+    <h1>Donor Profile</h1>
+    <article>
+      <% user.forEach(donor => { %>
+      <h2>Personal Information</h2>
+     
+      <% if (admin) { %>
+      <label value= >Username:  </label>
+      <label id="retrieved"><%=donor.Username%></label>   
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp;
+      <label>Password:</label>
+      <label id="retrieved"><%=donor.Password%></label>     <br><br>
+    <% } %>
+    
+      <label for="Fullname">Full Name: </label>
+      <label id="retrieved"><%=donor.FirstName%> <%=donor.LastName%></label>  
+      <br><br>
+      <label for="gender">Gender:</label> 
+      <label id="retrieved"> <%=donor.Gender%></label>
+      <br><br>
+      
+      <label for="birthdate">BirthDate: </label> 
+      <label id="retrieved"> <%=donor.Bday%></label>
+      <br><br>       
+      <label for="phonenumber">Phone Number: </label>
+      <label id="retrieved"> 0<%=donor.PhoneNo%></label>
+      <br><br>
+      <label for="email">Email: </label>
+      <label id="retrieved"> <%=donor.Email%></label>
+      <br><br>
+      <label for="address" id="address">Home Address:   &nbsp</label>
+      <label id="retrieved">  
+        <%=donor.City%>    &nbsp
+        <%=donor.Subcity%>     &nbsp
+        <%=donor.Woreda%>     &nbsp
+        <%=donor.HouseNumber%>    &nbsp</label>
+      <br><br>
+      
+     <h2>Blood Donation Information</h2>
+     <label>Appointment Status:</label><br><br>
+     <label>Blood Type:</label><br><br>
+     <label>Previous Donation Date:</label><br><br>
+
+    <% }) %>
+  </article>
+    </div>
+ <% }  %>
+ 
+
+ 
+  </body>
+
+</html>

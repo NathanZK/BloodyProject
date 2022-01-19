@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin Profile</title>
+    <link rel="stylesheet" href="/assets/css/admin/Profile.css">
+    
+  </head>
+  <body>
+    
+  <div class="body">
+    <h1>Admin Profile</h1>
+    <article>
+      <% user.forEach(admin => { %>
+      <h2>Personal Information</h2>
+    
+      <img id="img" class="myimg" src="<%=admin.Photo%>" alt="Admin Photo">
+      <label for="Fullname">Full Name: </label>
+      <label id="retrieved"><%=admin.FullName%></label>  
+      <br><br>
+      <label for="gender">Gender:</label> 
+      <label id="retrieved"> <%=admin.Gender%></label>
+      <br><br>
+      
+      <label for="birthdate">BirthDate: </label> 
+      <label id="retrieved"> <%=admin.Bday%></label>
+      <br><br>       
+      <label for="phonenumber">Phone Number: </label>
+      <label id="retrieved"> 0<%=admin.PhoneNo%></label>
+      <br><br>
+      <label for="email">Email: </label>
+      <label id="retrieved"> <%=admin.Email%></label>
+      <br><br>
+      <label for="address" id="address">Home Address:   &nbsp</label>
+      <label id="retrieved">  
+        <%=admin.City%>    &nbsp
+        <%=admin.Subcity%>     &nbsp
+        <%=admin.Woreda%>     &nbsp
+        <%=admin.HouseNumber%>    &nbsp</label>
+      <br><br>
+      
+
+    <% }) %>
+  </article>
+    </div>
+ 
+ 
+
+ 
+  </body>
+
+</html>
