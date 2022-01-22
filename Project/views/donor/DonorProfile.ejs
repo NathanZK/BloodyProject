@@ -87,7 +87,7 @@
       <br><br>
       
       <label for="birthdate">BirthDate: </label> 
-      <label id="retrieved"> <%=donor.Bday%></label>
+      <label id="retrieved"> <%=donor.Bday.toLocaleDateString('en-us', { weekday:"short", year:"numeric", month:"short", day:"numeric"}) %></label>
       <br><br>       
       <label for="phonenumber">Phone Number: </label>
       <label id="retrieved"> 0<%=donor.PhoneNo%></label>
