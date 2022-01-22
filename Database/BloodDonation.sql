@@ -57,9 +57,9 @@ DROP TABLE IF EXISTS `donation_history`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `donation_history` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `Date_donated` date NOT NULL,
   `Blood_Status` enum('Expired','Viable') NOT NULL,
   `Donation_Location` varchar(100) NOT NULL,
+  `Date_Donated` date NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -81,20 +81,16 @@ DROP TABLE IF EXISTS `donor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `donor` (
-  `ID` int NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(100) NOT NULL,
   `LastName` varchar(100) NOT NULL,
   `Email` varchar(100) NOT NULL,
   `Gender` enum('Male','Female') NOT NULL,
   `Bday` date NOT NULL,
   `donor_info_ID` varchar(50) NOT NULL,
-  `donor_health_ID` int DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `donor_health_ID_idx` (`donor_health_ID`),
+  PRIMARY KEY (`Email`),
   KEY `donor_info_ID_idx` (`donor_info_ID`),
-  CONSTRAINT `donor_health_ID` FOREIGN KEY (`donor_health_ID`) REFERENCES `donor_health` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `donor_info_ID` FOREIGN KEY (`donor_info_ID`) REFERENCES `personal_info` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +99,7 @@ CREATE TABLE `donor` (
 
 LOCK TABLES `donor` WRITE;
 /*!40000 ALTER TABLE `donor` DISABLE KEYS */;
-INSERT INTO `donor` VALUES (1,'Nahom','Behailu','n@gmail.com','Male','2000-01-04','NahBeh',NULL),(2,'Lealem','Kinfe','l@gmail.com','Male','2000-01-01','LeaKin',NULL);
+INSERT INTO `donor` VALUES ('Lealem','Kinfe','l@gmail.com','Male','2000-01-01','LeaKin'),('Nahom','Behailu','n@gmail.com','Male','2000-01-04','NahBeh');
 /*!40000 ALTER TABLE `donor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,20 +112,23 @@ DROP TABLE IF EXISTS `donor_health`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `donor_health` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `health_info_ID` int NOT NULL,
-  `inventory_ID` int NOT NULL,
-  `test_result_ID` int NOT NULL,
-  `donation_history_ID` int NOT NULL,
+  `health_info_ID` int DEFAULT NULL,
+  `inventory_ID` int DEFAULT NULL,
+  `test_result_ID` int DEFAULT NULL,
+  `donation_history_ID` int DEFAULT NULL,
+  `donor_ID` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `health_info_ID_idx` (`health_info_ID`),
-  KEY `inventory_ID_idx` (`inventory_ID`),
-  KEY `test_result_ID_idx` (`test_result_ID`),
   KEY `donation_history_ID_idx` (`donation_history_ID`),
+  KEY `test_result_ID_idx` (`test_result_ID`),
+  KEY `inventory_ID_idx` (`inventory_ID`),
+  KEY `donor_ID_idx` (`donor_ID`),
   CONSTRAINT `donation_history_ID` FOREIGN KEY (`donation_history_ID`) REFERENCES `donation_history` (`ID`),
+  CONSTRAINT `donor_ID` FOREIGN KEY (`donor_ID`) REFERENCES `donor` (`donor_info_ID`),
   CONSTRAINT `health_info_ID` FOREIGN KEY (`health_info_ID`) REFERENCES `health_info` (`ID`),
-  CONSTRAINT `inventory_ID` FOREIGN KEY (`inventory_ID`) REFERENCES `inventory` (`ID`),
-  CONSTRAINT `test_result_ID` FOREIGN KEY (`test_result_ID`) REFERENCES `test_result` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `inventory_ID` FOREIGN KEY (`inventory_ID`) REFERENCES `inventory` (`BloodBagNo`),
+  CONSTRAINT `test_result_ID` FOREIGN KEY (`test_result_ID`) REFERENCES `test_result` (`Testtube_No`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,6 +137,7 @@ CREATE TABLE `donor_health` (
 
 LOCK TABLES `donor_health` WRITE;
 /*!40000 ALTER TABLE `donor_health` DISABLE KEYS */;
+INSERT INTO `donor_health` VALUES (1,NULL,NULL,934433,NULL,'NahBeh'),(2,NULL,NULL,124562,NULL,'LeaKin'),(3,NULL,NULL,123432,NULL,'NahBeh');
 /*!40000 ALTER TABLE `donor_health` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +152,8 @@ CREATE TABLE `health_info` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `Blood_type` enum('A','B','AB','O') NOT NULL,
   `RhesusFactor` enum('+','-') NOT NULL,
-  `Risks` varchar(100) DEFAULT NULL,
+  `Blood_Pressure` varchar(100) NOT NULL,
+  `Haemoglobin_Level` double NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -174,10 +175,9 @@ DROP TABLE IF EXISTS `inventory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inventory` (
-  `ID` int NOT NULL AUTO_INCREMENT,
   `Amount` double NOT NULL,
   `BloodBagNo` int NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`BloodBagNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -228,11 +228,16 @@ DROP TABLE IF EXISTS `test_result`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `test_result` (
-  `ID` int NOT NULL AUTO_INCREMENT,
-  `Diseases` varchar(100) NOT NULL,
-  `Heamoglobin` varchar(45) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Testtube_No` int NOT NULL AUTO_INCREMENT,
+  `Diabetes` enum('Positive','Negative') NOT NULL,
+  `HIV` enum('Positive','Negative') NOT NULL,
+  `HepatitisB_C` enum('Positive','Negative') NOT NULL,
+  `Chlamydia` enum('Positive','Negative') NOT NULL,
+  `Syphilis` enum('Positive','Negative') NOT NULL,
+  `Date_Tested` date NOT NULL,
+  PRIMARY KEY (`Testtube_No`),
+  UNIQUE KEY `Testtube_No_UNIQUE` (`Testtube_No`)
+) ENGINE=InnoDB AUTO_INCREMENT=934434 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,6 +246,7 @@ CREATE TABLE `test_result` (
 
 LOCK TABLES `test_result` WRITE;
 /*!40000 ALTER TABLE `test_result` DISABLE KEYS */;
+INSERT INTO `test_result` VALUES (123432,'Negative','Negative','Negative','Negative','Negative','2020-03-06'),(124562,'Negative','Negative','Positive','Negative','Positive','2022-01-05'),(934433,'Positive','Negative','Positive','Positive','Positive','2021-01-06');
 /*!40000 ALTER TABLE `test_result` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -253,4 +259,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-22  3:44:06
+-- Dump completed on 2022-01-22 16:32:15
