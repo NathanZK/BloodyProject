@@ -7,4 +7,40 @@
     
   }
 
-  
+  .body h1{
+    color: var(--secondary-color);
+    font-style: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 42px;
+}
+
+table, th, td {
+  border: 2px solid var(--quaternary-color);
+  border-collapse: collapse;
+}
+
+table {
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+th {
+  height: 70px;
+  background-color: var(--secondary-color);
+  color: var(--quaternary-color)
+}
+td {
+  height: 50px;
+  background-color: var(--quinary-color);
+  color: var(--tertiary-color)
+ 
+}
+
+*{
+background-color: var(--quaternary-color);
+
+}
+
+
