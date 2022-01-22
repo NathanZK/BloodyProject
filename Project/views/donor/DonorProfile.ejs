@@ -2,11 +2,29 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Create Donor Profile</title>
+   
+    <title>Donor Profile</title>
     <link rel="stylesheet" href="/assets/css/admin/Profile.css">
     
   </head>
   <body>
+    <% if (access){ %>
+      <div class="body">
+        <article>
+        <h1>Access Donor Profile</h1>
+        
+        <form action='/admin/accessdonorprofile' method = 'post'>
+          <label>Username:</label>
+          <input type="text" name="username" required> <br><br>
+          <input class="submit" type="submit" value="Access">
+          
+        </form>
+      </article>
+
+      </div>
+   
+     <% } else { %>
+
     <% if(!created){ %>
     <div class="body">
         <h1>Create Account For Donor</h1>
@@ -28,7 +46,7 @@
                 <input type="date" name="birthdate" > 
                 <br><br>       
                 <label for="phonenumber">Phone Number:</label>
-                <input type ="number" name ="phonenumber">
+                <input type ="tel" name ="phonenumber">
                 <br><br>
                 <label for="email">Email:</label>
                 <input type ="text" name ="email" placeholder="a@gmail.com">
@@ -93,9 +111,9 @@
     <% }) %>
   </article>
     </div>
- <% }  %>
- 
-
+ <% }}  %>
+  
+  
  
   </body>
 
