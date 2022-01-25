@@ -8,14 +8,18 @@ const router = Router();
 // Donor Profile
 router
 .get('/donor/profile', authentication.isDonorLoggedIn, ( req, res)=>{
-  let sql3 = `SELECT * FROM donor 
-  INNER JOIN personal_info
-  ON donor.donor_info_ID= personal_info.Username
-  WHERE Username = "${req.userData.Username}"`;
 
- db.query(sql3, (error , result) =>{
+  let sql =  `SELECT * FROM donor 
+              INNER JOIN personal_info
+              ON donor.donor_info_ID= personal_info.Username
+              INNER JOIN appointment
+              ON donor.donor_info_ID = appointment.donor_username
+              WHERE Username = "${req.userData.Username}"`;
+  
+ db.query(sql, (error , result) =>{
     res.render("donor/DonorProfile", { created: true,  user: result , admin:false, access: false});
   });
+
 
 });
 //View blood test results
@@ -28,12 +32,13 @@ router.get('/donor/result' , authentication.isDonorLoggedIn ,(req , res)=> {
             WHERE donor_info_ID= "${req.userData.Username}"
             ORDER BY Date_Tested DESC`;
  
-
-
  db.query(sql, (error , result) =>{
- 
   res.render('donor/results', {user:result});
   });
+
+ 
+
+
 
   
 });
