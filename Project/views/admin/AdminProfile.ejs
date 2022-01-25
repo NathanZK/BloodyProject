@@ -23,7 +23,7 @@
       <br><br>
       
       <label for="birthdate">BirthDate: </label> 
-      <label id="retrieved"> <%=admin.Bday%></label>
+      <label id="retrieved"> <%=admin.Bday.toLocaleDateString('en-us', { weekday:"short", year:"numeric", month:"short", day:"numeric"}) %></td>%></label>
       <br><br>       
       <label for="phonenumber">Phone Number: </label>
       <label id="retrieved"> 0<%=admin.PhoneNo%></label>
