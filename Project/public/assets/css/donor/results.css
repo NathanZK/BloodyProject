@@ -42,5 +42,14 @@ td {
 background-color: var(--quaternary-color);
 
 }
+p
+{
+  color: var(--secondary-color);
+  font-style: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 35px;
+
+}
 
 
