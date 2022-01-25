@@ -102,15 +102,22 @@
         <%=donor.Woreda%>     &nbsp
         <%=donor.HouseNumber%>    &nbsp</label>
       <br><br>
-      
-     <h2>Blood Donation Information</h2>
-     <label>Appointment Status:</label><br><br>
-     <label>Blood Type:</label><br><br>
-     <label>Previous Donation Date:</label><br><br>
+     
+    
 
-    <% }) %>
+     <h2>Blood Donation Information</h2>
+     <label>Appointment Status:</label>
+     <label id="retrieved"><%=donor.dateTime_of_appointment%> </label>  
+     <br><br>
+     <label>Blood Type:</label>
+     <br><br>
+     <label>Previous Donation Date:</label><br><br>
+    
+     <% }) %>
+    
   </article>
     </div>
+
  <% }}  %>
   
   

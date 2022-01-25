@@ -24,6 +24,7 @@
           <th>Syphilis</th>
         </tr>
         <% user.forEach(donor => { %>
+        <% if (donor.Counseling=="Received"){%>
         <tr>
           <td><%=donor.Date_Tested.toLocaleDateString('en-us', { weekday:"short", year:"numeric", month:"short", day:"numeric"}) %></td>
           <td><%=donor.Diabetes %></td>
@@ -32,8 +33,14 @@
           <td><%=donor.Chlamydia %></td>
           <td><%=donor.Syphilis %></td>
         </tr>
-        <% }) %>
+
+        <% }}) %>
       </table>
+      <% user.forEach(donor => { %>
+        <% if (donor.Counseling=="Not Received"){%>
+         <p>Your blood test result you took on <%=donor.Date_Tested.toDateString()%> is ready!</p>
+         <p>It will be released after you receive Counseling at any Blood bank</p>
+        <% }}) %>
       
     </div>
 
