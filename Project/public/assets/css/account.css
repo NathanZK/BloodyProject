@@ -201,8 +201,9 @@ main {
     top: 52%;
     left: 75%;
     transform: translate(-50%, -50%);
-    width: 350px;
-    background: rgb(255, 255, 255);
+    width: 400px;
+    
+    
     
     background: linear-gradient(
     to right bottom,
@@ -220,14 +221,14 @@ main {
     
   }
   .right h1{
-    color: var(--secondary-color);
+    color: var(--quinary-color);
     font-style: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   .center h1{
     text-align: center;
     padding: 20px 0;
-    border-bottom: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--quinary-color);
   }
   .center form{
     padding: 0 40px;
@@ -235,7 +236,7 @@ main {
   }
   form .txt_field{
     position: relative;
-    border-bottom: 2px solid var(--secondary-color);
+    border-bottom: 2px solid var(--quaternary-color);
     margin: 30px 0;
   }
   .txt_field input{
@@ -246,13 +247,13 @@ main {
     border: none;
     background: none;
     outline: none;
-    color: var(--primary-color);
+    color: var(--quaternary-color);
   }
   .txt_field label{
     position: absolute;
     top: 50%;
     left: 5px;
-    color: var(--secondary-color);
+    color: var(--quaternary-color);
     transform: translateY(-50%);
     font-size: 16px;
     pointer-events: none;
@@ -265,13 +266,13 @@ main {
     left: 0;
     width: 0%;
     height: 2px;
-    background: var(--primary-color);
+    background: var(--quinary-color);
     transition: .5s;
   }
   .txt_field input:focus ~ label,
   .txt_field input:valid ~ label{
     top: -5px;
-    color: var(--primary-color);
+    color: var(--quinary-color);
   }
   .txt_field input:focus ~ span::before,
   .txt_field input:valid ~ span::before{
@@ -290,16 +291,18 @@ main {
     width: 100%;
     height: 50px;
     border: 1px solid;
-    background: var(--secondary-color);
-    border-radius: 25px;
+    background: var(--quinary-color);
+    border-radius: 30px;
+    border-color: var(--quinary-color);
     font-size: 18px;
-    color:var(--quaternary-color);
+    color:var(--sixth-color);
     font-weight: 700;
     cursor: pointer;
     outline: none;
+    
   }
   input[type="submit"]:hover{
-    border-color: var(--primary-color);
+    border-color: var(--tertiary-color);
     transition: .5s;
   }
   
@@ -352,8 +355,17 @@ main {
 
 
 
+
+
+
+
+
+
+
+
+
 h1 {
-  color: rgb(0, 0, 0);
+  color: var(--quinary-color);
   font-weight: 500;
   font-size: 2.5rem;
   opacity: 0.8;
