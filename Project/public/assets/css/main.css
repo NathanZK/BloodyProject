@@ -1,0 +1,413 @@
+/*Lealem Kinfe |  ETR/5704/11 | Landing Main Page */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root{
+    --primary-color:#82a6f2;
+    --secondary-color:#d49177;
+    --tertiary-color:#7c77f7;
+    --quaternary-color:#d66e74;
+    --quinary-color:#ad5af4;
+    --sixth-color:#ffffff;
+    
+  }
+  
+
+body{
+  
+    font-family: "Poppins", sans-serif;
+    height: 100vh;
+    background: linear-gradient(to right top, #d66e74, #ad5af4);
+    display: flex;
+    align-items:top;
+    justify-content: center;
+  
+ 
+}
+
+
+.header{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+ 
+  z-index: 2;
+  backdrop-filter: blur(2rem);
+  display: flex;
+  height: 15vh;
+  min-width: 100vw;
+}
+
+
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 10%;
+ 
+}
+.logo{
+  cursor: pointer;
+}
+.nav_links {
+  list-style: none;
+}
+.nav_links li{
+  display: inline-block;
+  justify-content: space-around;
+  padding: 0px 13px;
+  background-color: var(--quaternary-color);
+  
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.nav_links li:hover{
+    padding: 0px 13px;
+    background-color: var(--tertiary-color);
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 20px;
+ 
+    
+
+}
+.nav_links li a{
+ 
+  
+  color: var(--quinary-color);
+  
+  transition: all 0.3s ease 0s;
+  
+}
+.nav_links li a:hover{
+
+ color: var(--primary-color); 
+ transition: all 0.3s ease 0s;
+ stroke: white;
+
+}
+
+.nav-item a h3{
+  font-size: 16px; 
+  stroke: white;
+}
+
+button{
+ 
+  background-color: rgba(0, 136, 169, alpha);
+  border: none;
+  border-radius: 50px;
+ 
+}
+
+button:hover{
+  background-color: var(--secondary-color);
+}
+
+
+
+.container{
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  
+  margin: 0 auto;
+  
+}
+li{
+  list-style: none;
+  line-height: 2;
+}
+a{
+  text-decoration: none;
+  color: var(--quinary-color);
+}
+
+
+
+.items li{
+  display: inline-block;
+  padding: 0px 2px;
+  position: relative;
+  bottom: -3vh;
+  color: var(--primary-color);
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+
+hr{
+  opacity: .3;
+}
+.footer .end{
+  font-family: Roboto;
+  text-align: center;
+  padding: 20px 0 0 0;
+}
+
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+ 
+  font-family: "Roboto";
+}
+
+
+main {
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+ 
+ left: 10%;
+  top:17.5vh;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h1 {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: 2.5rem;
+  opacity: 0.8;
+  position: absolute;
+  top: 3vh;
+ 
+}
+h2,
+p {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  opacity: 0.8;
+  
+}
+
+h3 {
+  color: white;
+  
+}
+
+
+
+.glass {
+  
+  background: rgb(255, 255, 255);
+  height: 80vh;
+  width: 120%;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-radius: 2rem;
+  z-index: 2;
+  backdrop-filter: blur(2rem);
+  display: flex;
+  position: relative;
+  left: 10vh;
+ 
+ 
+}
+
+
+.dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  text-align: center;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+  border-radius: 2rem;
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0rem;
+  padding: 1rem 5rem;
+  align-items: center;
+}
+.link h2 {
+  padding: 0rem 2rem;
+}
+
+.games {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-around;
+  
+}
+
+.pro {
+  background: linear-gradient(to right top,var(--tertiary-color),  var(--quaternary-color));
+  border-radius: 2rem;
+  color: white;
+  padding: 0.25rem;
+  position: absolute;
+  bottom: 20px;
+}
+
+.pro iframe {
+  position: absolute;
+  top: 10%;
+  right: 20%;
+  z-index: 4;
+}
+
+.pro h2 {
+  width: 40%;
+  color: white;
+  font-weight: 600;
+}
+
+/* GAMES */
+.status {
+  margin-bottom: 3rem;
+}
+
+
+.games {
+  margin: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.card {
+  display: flex;
+  background: linear-gradient(
+    to left top,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.5)
+  );
+  border-radius: 1rem;
+  margin: 2rem 0rem;
+  padding: 2rem;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+
+.percentage {
+  font-weight: bold;
+  background: linear-gradient(to right top, var(--quaternary-color), var(--tertiary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.one{
+    background-color: var(--quinary-color);
+    position: absolute;
+    top: 10%;
+    height: 80vh;
+    
+
+}
+
+.two{
+    background-color: #7d7373;
+    height: 80vh;
+
+}
+
+.three{
+    background-color: #a36666;
+    height: 80vh;
+}
+
+
+.left{
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background:var(--quinary-color);
+  border-radius: 10px;
+ 
+ 
+}
+
+.text{
+  position: absolute;
+  top: 50vh;
+  left: 120vh;
+  background:var(--quinary-color);
+  width: auto;
+  height: auto;
+  
+
+}
+
+.text h1{
+  color: var(--primary-color);
+  font-family: "Roboto";
+}
