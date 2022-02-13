@@ -46,3 +46,287 @@ body{
   padding: 0.5em 10%;
  
 }
+
+
+
+
+
+
+
+h1 {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: 2.5rem;
+  opacity: 0.8;
+  position: absolute;
+  top: 3vh;
+ 
+}
+
+
+h3 {
+  color: white;
+  
+}
+
+
+
+.user ul {
+  position: relative;
+  
+  align-items: left;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  opacity: 0.8;
+  font-size: 22PX;
+  color: var(--quinary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  left: 0vh;
+  list-style: none;
+
+  
+}
+
+.userul li{
+  position: relative;
+  left: 0vh;
+  align-items: left;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  opacity: 0.8;
+  font-size: 22PX;
+  color: var(--quinary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+
+  
+}
+
+
+.glass {
+  position: relative !important;
+  
+  
+  background: rgb(255, 255, 255);
+  height: 82vh;
+  width: 120%;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-radius: 2rem;
+  z-index: 2;
+  backdrop-filter: blur(2rem);
+  display: flex;
+  position: relative;
+  left: 10vh;
+ 
+ 
+}
+
+
+.dashboard1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  text-align: center;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+  border-radius: 2rem;
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0rem;
+  padding: 1rem 5rem;
+  align-items: center;
+}
+.link h2 {
+  padding: 0rem 2rem;
+}
+
+.games {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-around;
+  
+}
+
+.pro {
+  background: linear-gradient(to right top,var(--tertiary-color),  var(--quaternary-color));
+  border-radius: 2rem;
+  color: white;
+  padding: 0.25rem;
+  position: absolute;
+  bottom: 20px;
+}
+
+.pro iframe {
+  position: absolute;
+  top: 10%;
+  right: 20%;
+  z-index: 4;
+}
+
+.pro h2 {
+  width: 40%;
+  color: white;
+  font-weight: 600;
+}
+
+/* GAMES */
+.status {
+  margin-bottom: 3rem;
+}
+
+
+.games {
+  margin: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.card {
+  display: flex;
+  background: linear-gradient(
+    to left top,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 1)
+  );
+  border-radius: 1rem;
+  margin: 2rem 0rem;
+  padding: 2rem;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+
+.percentage {
+  font-weight: bold;
+  background: linear-gradient(to right top, var(--quaternary-color), var(--tertiary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
+.profilepic{
+
+  -webkit-mask-image:url(../../images/icons8-filled-circle-100.png);
+  mask-image:url(../../images/icons8-filled-circle-100.png);
+  
+  -webkit-mask-position:top left;
+  mask-position:top left;
+  
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  
+}
+
+
+
+
+
+
+
+
+
+
+.dashboard1 {
+  position: relative;
+  top: -3vh;
+  border-collapse: collapse;
+  margin: 25px 0;
+ 
+  font-size: 0.9em;
+  width:325px;
+  height:620px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 30px;
+}
+
+
+
+.dashboard1 thead tr {
+  position: absolute;
+  left: 0vh;
+  
+  
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 1)
+  );
+  color: var(--primary-color);
+  text-align: left;
+  font-weight: bold;
+  font-size: 22px;
+  width: 100%;
+}
+
+.dashboard1 th,
+.dashboard1 td {
+  padding: 12px 15px;
+}
+
+.dashboard1 tbody tr {
+  position: relative;
+  top: 6vh;
+  height: 45.5px;
+  right: 1px;
+ 
+}
+
+.dashboard1 tbody tr:nth-of-type(even) {
+  
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+
+.dashboard1 tbody tr:nth-of-type(odd) {
+  
+  background: linear-gradient(
+    to right bottom,
+    rgba(216, 147, 20, 0.1),
+    rgba(255, 255, 255, 1)
+  );
+
+}
+.dashboard1 tbody tr:last-of-type {
+  border-bottom: 2px var(--secondary-color);
+}
+
+.dashboard1 tbody tr.active-row {
+  font-weight: bold;
+  color: var(--secondary-color);
+  width: fit-content;
+  width: 400px;
+}
+
+.dashboard1 tbody tr.passive {
+  font-weight: bold;
+  color: var(--primary-color);
+  width: 400px;
+}
