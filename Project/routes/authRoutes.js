@@ -7,7 +7,7 @@ const router = Router();
 
 //Login page - get request
 router.get('/login' , (req , res)=> {
-    res.render('login' , {error: false });
+    res.render('guest/login' , {error: false });
 });
 
 
@@ -59,7 +59,7 @@ let sql2 = `SELECT * FROM donor
                  
           } 
           if (!pass){
-            res.render('login' , {error:true });
+            res.render('guest/login' , {error:true });
            }
           
        });
