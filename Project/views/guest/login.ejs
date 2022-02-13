@@ -1,0 +1,51 @@
+<!--Lealem Kinfe |  ETR/5704/11 | Main Landing Page-->
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Donate | Easier than ever</title>
+    <link rel="stylesheet" href="../assets/css/account.css">
+
+  </head>
+  <body>
+     
+    <%- include('../partials/guestnav') %>
+    
+    <div class="body">
+      <div class="right">
+        <h1>Login To Your Account</h1>
+        <form action = "/login" method="POST">
+          <div class="txt_field">
+            <input type="text" name="username" required>
+            <span></span>
+            <label>Username or ID</label>
+          </div>
+          <div id="input" class="txt_field">
+            <input type="password"  name="password" required>
+            <span></span>
+            <label>Password</label>
+          </div>
+          <% if(error) { %>
+            <p id="wrong" class="pass">Username or Password is incorrect</p>
+          <% } %>
+          <div class="pass">Forgot Password?</div>
+          <input type="submit" value="Login">
+          
+        </form>
+      </div>
+
+        <div class="left">
+            <img id="img" class="myimg" src="../assets/images/awoman.png" alt="image" width="600px" height="490px">
+          
+        </div>
+     
+    
+      
+   
+
+  </body>
+
+
+</html>
