@@ -88,8 +88,9 @@ CREATE TABLE `donation_history` (
   `Blood_Status` enum('Expired','Viable') NOT NULL,
   `Donation_Location` varchar(100) NOT NULL,
   `Date_Donated` date NOT NULL,
+  `Duration` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,6 +99,7 @@ CREATE TABLE `donation_history` (
 
 LOCK TABLES `donation_history` WRITE;
 /*!40000 ALTER TABLE `donation_history` DISABLE KEYS */;
+INSERT INTO `donation_history` VALUES (1,'Viable','Stadium','2020-03-06','20 mins'),(2,'Viable','Bole','2022-01-05','30 mins'),(3,'Expired','Megenagna','2020-03-06','25 mins'),(4,'Expired','Kolfe','2020-03-06','25 mins');
 /*!40000 ALTER TABLE `donation_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +129,7 @@ CREATE TABLE `donor` (
 
 LOCK TABLES `donor` WRITE;
 /*!40000 ALTER TABLE `donor` DISABLE KEYS */;
-INSERT INTO `donor` VALUES ('Lealem','Kinfe','l@gmail.com','Male','2000-01-01','LeaKin'),('Nahom','Behailu','n@gmail.com','Male','2000-01-04','NahBeh'),('Natnael','Tedros','nati@gmail.com','Male','2000-03-10','NatTed');
+INSERT INTO `donor` VALUES ('Joshua','Tadesse','eshewwww@gmail.com','Male','2022-02-09','JosTad'),('Lealem','Kinfe','l@gmail.com','Male','2000-01-01','LeaKin'),('Nahom','Behailu','n@gmail.com','Male','2000-01-04','NahBeh'),('Natnael','Tedros','nati@gmail.com','Male','2000-03-10','NatTed');
 /*!40000 ALTER TABLE `donor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,10 +153,10 @@ CREATE TABLE `donor_health` (
   KEY `test_result_ID_idx` (`test_result_ID`),
   KEY `inventory_ID_idx` (`inventory_ID`),
   KEY `donor_ID_idx` (`donor_ID`),
-  CONSTRAINT `donation_history_ID` FOREIGN KEY (`donation_history_ID`) REFERENCES `donation_history` (`ID`),
-  CONSTRAINT `donor_ID` FOREIGN KEY (`donor_ID`) REFERENCES `donor` (`donor_info_ID`),
-  CONSTRAINT `health_info_ID` FOREIGN KEY (`health_info_ID`) REFERENCES `health_info` (`ID`),
-  CONSTRAINT `inventory_ID` FOREIGN KEY (`inventory_ID`) REFERENCES `inventory` (`BloodBagNo`),
+  CONSTRAINT `donation_history_ID` FOREIGN KEY (`donation_history_ID`) REFERENCES `donation_history` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `donor_ID` FOREIGN KEY (`donor_ID`) REFERENCES `donor` (`donor_info_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `health_info_ID` FOREIGN KEY (`health_info_ID`) REFERENCES `dynamic_health_info` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `inventory_ID` FOREIGN KEY (`inventory_ID`) REFERENCES `inventory` (`BloodBagNo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `test_result_ID` FOREIGN KEY (`test_result_ID`) REFERENCES `test_result` (`Testtube_No`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -165,35 +167,33 @@ CREATE TABLE `donor_health` (
 
 LOCK TABLES `donor_health` WRITE;
 /*!40000 ALTER TABLE `donor_health` DISABLE KEYS */;
-INSERT INTO `donor_health` VALUES (1,1,NULL,934433,NULL,'NahBeh'),(2,NULL,NULL,124562,NULL,'LeaKin'),(3,NULL,NULL,123432,NULL,'NahBeh'),(4,NULL,NULL,696969,NULL,'NatTed');
+INSERT INTO `donor_health` VALUES (1,1,12345,124562,2,'LeaKin'),(2,4,11111,123432,1,'NahBeh'),(3,5,22222,696969,3,'NatTed'),(4,7,99999,934433,4,'NahBeh');
 /*!40000 ALTER TABLE `donor_health` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `health_info`
+-- Table structure for table `dynamic_health_info`
 --
 
-DROP TABLE IF EXISTS `health_info`;
+DROP TABLE IF EXISTS `dynamic_health_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `health_info` (
+CREATE TABLE `dynamic_health_info` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `Blood_type` enum('A','B','AB','O') NOT NULL,
-  `RhesusFactor` enum('+','-') NOT NULL,
-  `Blood_Pressure` varchar(100) NOT NULL,
+  `Weight` double NOT NULL,
   `Haemoglobin_Level` double NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `health_info`
+-- Dumping data for table `dynamic_health_info`
 --
 
-LOCK TABLES `health_info` WRITE;
-/*!40000 ALTER TABLE `health_info` DISABLE KEYS */;
-INSERT INTO `health_info` VALUES (1,'O','-','180/120',120.5);
-/*!40000 ALTER TABLE `health_info` ENABLE KEYS */;
+LOCK TABLES `dynamic_health_info` WRITE;
+/*!40000 ALTER TABLE `dynamic_health_info` DISABLE KEYS */;
+INSERT INTO `dynamic_health_info` VALUES (1,65,120),(2,70,110),(3,75,112),(4,60,123),(5,55,133),(6,80,132),(7,82,134);
+/*!40000 ALTER TABLE `dynamic_health_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -206,7 +206,6 @@ DROP TABLE IF EXISTS `inventory`;
 CREATE TABLE `inventory` (
   `BloodBagNo` int NOT NULL,
   `Amount` double NOT NULL,
-  `Blood_Viability` enum('Viable','Nonviable') NOT NULL,
   PRIMARY KEY (`BloodBagNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -217,6 +216,7 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
+INSERT INTO `inventory` VALUES (11111,450),(12345,350),(22222,350),(99999,350);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,8 +246,37 @@ CREATE TABLE `personal_info` (
 
 LOCK TABLES `personal_info` WRITE;
 /*!40000 ALTER TABLE `personal_info` DISABLE KEYS */;
-INSERT INTO `personal_info` VALUES ('BisAsh','4444',969696969,'A.A','Bole','03','122'),('LeaKin','3333',911232328,'Everywhere','Bole','09','234'),('LilAle','2222',911232327,'Here','Kolfe','02','123'),('NahBeh','1111',943555555,'Adama','Rep','09','123'),('NatTed','0069',934341281,'Addis Ababa','Kolfe Keranyo','09','123'),('NatZel','0000',911232323,'A.A','Bole','01','new');
+INSERT INTO `personal_info` VALUES ('BisAsh','4444',969696969,'A.A','Bole','03','122'),('JosTad','kkbv2',934341281,'Addis Ababa','Yert','9','564'),('LeaKin','3333',911232328,'Everywhere','Bole','09','234'),('LilAle','2222',911232327,'Here','Kolfe','02','123'),('NahBeh','1111',943555555,'Adama','Rep','09','123'),('NatTed','0069',934341281,'Addis Ababa','Kolfe Keranyo','09','123'),('NatZel','0000',911232323,'A.A','Bole','01','new');
 /*!40000 ALTER TABLE `personal_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `static_health_info`
+--
+
+DROP TABLE IF EXISTS `static_health_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `static_health_info` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `Blood_type` enum('A','B','AB','O') NOT NULL,
+  `RhesusFactor` enum('+','-') NOT NULL,
+  `donorUsername` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `donorUsername_UNIQUE` (`donorUsername`),
+  KEY `donor_ID_idx` (`donorUsername`),
+  CONSTRAINT `donorUsername` FOREIGN KEY (`donorUsername`) REFERENCES `donor` (`donor_info_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `static_health_info`
+--
+
+LOCK TABLES `static_health_info` WRITE;
+/*!40000 ALTER TABLE `static_health_info` DISABLE KEYS */;
+INSERT INTO `static_health_info` VALUES (1,'O','-','NahBeh'),(2,'AB','+','NatTed'),(3,'A','+','LeaKin');
+/*!40000 ALTER TABLE `static_health_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -259,9 +288,9 @@ DROP TABLE IF EXISTS `test_result`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `test_result` (
   `Testtube_No` int NOT NULL AUTO_INCREMENT,
-  `Diabetes` enum('Positive','Negative') NOT NULL,
   `HIV` enum('Positive','Negative') NOT NULL,
-  `HepatitisB_C` enum('Positive','Negative') NOT NULL,
+  `HepatitisB` enum('Positive','Negative') NOT NULL,
+  `HepatitisC` enum('Positive','Negative') NOT NULL,
   `Chlamydia` enum('Positive','Negative') NOT NULL,
   `Syphilis` enum('Positive','Negative') NOT NULL,
   `Date_Tested` date NOT NULL,
@@ -293,4 +322,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-25 13:40:32
+-- Dump completed on 2022-02-14  4:54:33
