@@ -46,7 +46,16 @@ router.get('/donor/result' , authentication.isDonorLoggedIn ,(req , res)=> {
   res.render('donor/results', {user:result});
   });
 
- 
+ //make an appointment
+
+  router.get('/donor/appointment',authentication.isDonorLoggedIn,(req, res)=>{
+     res.render('appointment.ejs',{error: false});
+});
+
+router.post('donor/appointment',authentication.isDonorLoggedIn,(req,res)=>{
+  let sql= `INSERT INTO appointment VALUES ('${req.UserData.Username}','${req.body.datetime}','${req.body.location})`;
+});
+
 
 
 
