@@ -3,46 +3,67 @@
   <head>
     <meta charset="utf-8">
     <title>Donor</title>
-    <link rel="stylesheet" href="/assets/css/donor/results.css">
+    <link rel="stylesheet" href="../../assets/css/nav/nav.css">
+    <link rel="stylesheet" href="../../assets/css/donor/result.css">
     
 
   </head>
   <body>
 
-<div class="body">
+    <%- include('../partials/donornav') %>
+
+    <main>
+
+      <section class="glass">
+        <div class="dashboard1">
+          <div class="user">
+            
+            
+
+<div>
     
-      <h1>Blood Test Results </h1> <br><br>
+      <h1>Blood Test Results </h1> <br><br><br>
       
-      <table id= "results" class="table">
-        
-        <tr>
+      <table class="dashboard">
+       
+       
+        <tr class="passive">
           <th>Date Tested</th>
-          <th>Diabetes</th>
           <th>HIV</th>
-          <th>Hepatitis B & C</th>
+          <th>Hepatitis B</th>
+          <th>Hepatitis C</th>
           <th>Chlamydia</th>
           <th>Syphilis</th>
         </tr>
+     
+      
         <% user.forEach(donor => { %>
         <% if (donor.Counseling=="Received"){%>
+         
         <tr>
           <td><%=donor.Date_Tested.toLocaleDateString('en-us', { weekday:"short", year:"numeric", month:"short", day:"numeric"}) %></td>
-          <td><%=donor.Diabetes %></td>
           <td><%=donor.HIV %></td>
-          <td><%=donor.HepatitisB_C%></td>
+          <td><%=donor.HepatitisB %></td>
+          <td><%=donor.HepatitisC%></td>
           <td><%=donor.Chlamydia %></td>
           <td><%=donor.Syphilis %></td>
         </tr>
+      
 
         <% }}) %>
+   
       </table>
+      <br><br> <br><br> <br><br>
       <% user.forEach(donor => { %>
         <% if (donor.Counseling=="Not Received"){%>
-         <p>Your blood test result you took on <%=donor.Date_Tested.toDateString()%> is ready!</p>
+         <p>The blood test result you took on <%=donor.Date_Tested.toDateString()%> is ready!</p>
          <p>It will be released after you receive Counseling at any Blood bank</p>
         <% }}) %>
       
     </div>
+  
+  </main>
+
 
 </body>
 </html>

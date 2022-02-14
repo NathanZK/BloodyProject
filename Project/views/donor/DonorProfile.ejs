@@ -4,14 +4,24 @@
     <meta charset="utf-8">
    
     <title>Donor Profile</title>
-    <link rel="stylesheet" href="/assets/css/admin/Profile.css">
+    <link rel="stylesheet" href="../../assets/css/nav/nav.css">
+    <link rel="stylesheet" href="../../assets/css/admin/createdonorProfile.css">
+   
     
   </head>
   <body>
+    <%- include('../partials/adminnav') %>
+    <main>
+
+      <section class="glass">
+        <div class="dashboard1">
+          <div class="user">
+
+    
     <% if (access){ %>
       <div class="body">
         <article>
-        <h1>Access Donor Profile</h1>
+        <h1>Access Donor Profile</h1><br><br><br><br><br>
         
         <form action='/admin/accessdonorprofile' method = 'post'>
           <label>Username:</label>
@@ -26,8 +36,8 @@
      <% } else { %>
 
     <% if(!created){ %>
-    <div class="body">
-        <h1>Create Account For Donor</h1>
+      <table class="dashboard">
+        <h1>Create Account For Donor</h1><br><br><br><br><br><br><br>
         <article><h2>Input the information in the space provided</h2><br>
             
             <form action="/admin/createdonorprofile" method="post">
@@ -66,10 +76,10 @@
     </div>
  <% } else { %>
   <div class="body">
-    <h1>Donor Profile</h1>
+    <h1>Donor Profile</h1><br><br><br><br><br><br><br>
     <article>
       <% user.forEach(donor => { %>
-      <h2>Personal Information</h2>
+      <h2>Personal Information</h2><br><br><br>
      
       <% if (admin) { %>
       <label value= >Username:  </label>
@@ -120,7 +130,8 @@
 
  <% }}  %>
   
-  
+   
+  </main>
  
   </body>
 

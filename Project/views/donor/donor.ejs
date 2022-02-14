@@ -1,0 +1,173 @@
+<!--Lealem Kinfe |  ETR/5704/11 | Main Landing Page-->
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Donate | Easier than ever</title>
+    <link rel="stylesheet" href="../../assets/css/nav/nav.css">
+    <link rel="stylesheet" href="../../assets/css/donor/donor.css">
+
+  </head>
+  <body>
+
+    <%- include('../partials/donornav') %>
+   
+    <main>
+
+        <section class="glass">
+          <div class="dashboard1">
+            <div class="user">
+              <img class="profilepic" src="../../assets/images/icons8-user-male.gif" width="100px" height="100px" alt="" />
+              
+    <% user.forEach(donor => { %>
+    <table class="dashboard">
+        <thead>
+          <tr>
+            <th>PERSONAL INFORMATION</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+ 
+       
+
+          <tr class="passive">
+            <td>NAME</td>
+            <td><%=donor.FirstName%> <%=donor.LastName.substring(0,1)%> .</td>
+            
+            
+          </tr>
+          <tr class="active-row">
+            
+            <td>SEX</td>
+            <td><%=donor.Gender.toUpperCase()%></td>
+            
+          </tr>
+
+          <tr class="passive">
+            <td> DoB</td>
+            <td><%=donor.Bday.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}).toUpperCase() %></td>
+            
+            
+          </tr>
+          <tr class="active-row">
+            
+            <td> BLOOD TYPE</td>
+            <td><%=donor.Blood_type%> <% if (donor.RhesusFactor=="+"){ %> POSITIVE 
+              <% }else { %> NEGATIVE <%} %>
+              <br>(<%=donor.Blood_type%> <%=donor.RhesusFactor%>) </td>
+            
+          </tr>
+
+
+          <tr class="passive">
+            <td> LAST DONATED ON</td>
+            <td><%=donor.Date_Donated.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}).toUpperCase() %></td>
+            
+            
+          </tr>
+          <tr class="active-row">
+            
+            <td> LAST DONATION STATION</td>
+            <td><%=donor.Donation_Location.toUpperCase() %></td>
+            
+          </tr>
+
+          <tr class="passive">
+            <td> LAST DONATION AMOUNT</td>
+            <td><%=donor.Amount%> ml</td>
+            
+            
+          </tr>
+          <tr class="active-row">
+            
+            <td> LAST DONATION DURATION</td>
+            <td><%=donor.Duration%></td>
+            
+          </tr>
+
+          <tr class="passive">
+            <td>TOTAL DONATIONS</td>
+            <td><%=donor.Total%> x</td>
+           
+          
+            
+          </tr>
+  
+          
+          
+  
+          
+        </tbody>
+      </table>
+
+      <% }) %>
+    
+              
+            </div>
+            <div class="links">
+             
+             
+              
+            </div>
+            
+          </div>
+          <div class="games">
+            <div class="status">
+              <h1>Before Your Donation</h1>
+             </div>
+            <div class="cards">
+              <div class="card">
+                <img src="../../assets/images/calendar.gif" width="50px" height="50px" alt="" />
+                <div class="card-info">
+                  <h2>MAKE AN APPOINTMENT</h2>
+                  <p>This takes a maximum of Three Minutes. <br> Click here to Make AN Appointment</p>
+                  <div class="progress"></div>
+                </div>
+                <img src="../../assets/images/icons8-check-all (2).gif" width="50px" height="50px"  alt="" />
+              </div>
+              <div class="card">
+                <img src="../../assets/images/salad.gif" width="50px" height="50px" alt="" />
+
+                <div class="card-info">
+                  <h2>Get the Dish on Nutrition</h2>
+                  <p>Have iron-rich foods, such as red meat, <br> fish, poultry, beans, spinach, <br> iron-fortified cereals or raisins.</p>
+                  <div class="progress"></div>
+                </div>
+                <img src="../../assets/images/icons8-check-all (2).gif" width="50px" height="50px"  alt="" />
+              </div>
+              <div class="card">
+                <img src="../../assets/images/sleeping.gif" width="50px" height="50px"  alt="" />
+                <div class="card-info">
+                  <h2>Be Well Rested and Hydrate</h2>
+                  <p>Get a good night's sleep the night before your donation, <br> eat healthy foods and drink extra liquids.</p>
+                  <div class="progress"></div>
+                </div>
+                <img src="../../assets/images/icons8-check-all (2).gif" width="50px" height="50px"  alt="" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+
+            
+ 
+  
+        </section>
+       
+      </main>
+
+
+
+
+
+
+
+
+  </body>
+
+
+</html>

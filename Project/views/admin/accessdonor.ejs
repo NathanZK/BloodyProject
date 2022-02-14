@@ -1,0 +1,124 @@
+<!--Lealem Kinfe |  ETR/5704/11 | Main Landing Page-->
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Donate | Easier than ever</title>
+    <link rel="stylesheet" href="../../assets/css/nav/nav.css">
+    <link rel="stylesheet" href="../../assets/css/admin/accessdonor.css">
+
+  </head>
+  <body>
+
+    <%- include('../partials/adminnav') %>
+   
+    <main>
+
+        <section class="glass">
+          <div class="dashboard1">
+            <div class="user">
+              <img class="profilepic" src="../../assets/images/icons8-user-male.gif" width="100px" height="100px" alt="" />
+              
+    <% user.forEach(donor => { %>
+    <table class="dashboard">
+        <thead>
+          <tr>
+            <th>PERSONAL INFORMATION</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+ 
+       
+
+          <tr class="passive">
+            <td>NAME</td>
+            <td><%=donor.FirstName%> <%=donor.LastName.substring(0,1)%> .</td>
+            
+            
+          </tr>
+          <tr class="active-row">
+            
+            <td>SEX</td>
+            <td><%=donor.Gender.toUpperCase()%></td>
+            
+          </tr>
+
+          <tr class="passive">
+            <td> DoB</td>
+            <td><%=donor.Bday.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}).toUpperCase() %></td>
+            
+            
+          </tr>
+          <tr class="active-row">
+            
+            <td> BLOOD TYPE</td>
+            <td><%=donor.Blood_type%> <% if (donor.RhesusFactor=="+"){ %> POSITIVE 
+              <% }else { %> NEGATIVE <%} %>
+              <br>(<%=donor.Blood_type%> <%=donor.RhesusFactor%>) </td>
+            
+          </tr>
+
+
+          <tr class="passive">
+            <td> LAST DONATED ON</td>
+            <td><%=donor.Date_Donated.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}).toUpperCase() %></td>
+            
+            
+          </tr>
+          <tr class="active-row">
+            
+            <td> LAST DONATION STATION</td>
+            <td><%=donor.Donation_Location.toUpperCase() %></td>
+            
+          </tr>
+
+          <tr class="passive">
+            <td> LAST DONATION AMOUNT</td>
+            <td><%=donor.Amount%> ml</td>
+            
+            
+          </tr>
+          <tr class="active-row">
+            
+            <td> LAST DONATION DURATION</td>
+            <td><%=donor.Duration%></td>
+            
+          </tr>
+
+          <tr class="passive">
+            <td>TOTAL DONATIONS</td>
+            <td><%=donor.Total%> x</td>
+           
+          
+            
+          </tr>
+  
+          
+          
+  
+          
+        </tbody>
+      </table>
+
+      <% }) %>
+    
+              
+            </div>
+            
+       
+      </main>
+
+
+
+
+
+
+
+
+  </body>
+
+
+</html>
