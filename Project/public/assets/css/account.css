@@ -310,14 +310,42 @@ main {
   
   .left{
     position: absolute;
-    top: 50%;
+    top: 20%;
     right: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
     
     border-radius: 10px;
+    
+    z-index: 10;
    
-   
+  }
+
+  .myimg{
+    position: absolute;
+    
+  }
+
+  .myback{
+    position: absolute;
+    z-index: 4;
+    top: 60%;
+    right: 60%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+  }
+
+
+ 
+
+  .myback2{
+
+    position: absolute;
+    z-index: -1;
+    top: 60%;
+    right: 20%;
+    transform: translate(-50%, -50%);
+    width: 400px;
   }
   
 

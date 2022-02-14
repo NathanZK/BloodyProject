@@ -201,7 +201,7 @@ main {
     top: 60%;
     left: 69%;
     transform: translate(-50%, -50%);
-    width: 650px;
+    width: 670px;
     
     background: rgb(255, 255, 255);
     
@@ -338,9 +338,9 @@ main {
   position: absolute;
   padding: 3em 5em;
   top: 150%;
-  right: 20%;
+  right:10%;
   transform: translate(-50%, -50%);
-  width: 600px;
+  width: 650px;
   
   background: rgb(255, 255, 255);
   
@@ -422,9 +422,9 @@ main {
   position: absolute;
   padding: 3em 5em;
   top: 250%;
-  left: 69%;
+  left:69%;
   transform: translate(-50%, -50%);
-  width: 570px;
+  width: 700px;
   
   background: rgb(255, 255, 255);
   
@@ -447,7 +447,7 @@ main {
   color: #c566a8;
   font-style: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  left: 18vh;
+  left: -2vh;
   
 }
 
@@ -468,7 +468,7 @@ main {
 .left2{
   position: absolute;
   top: 250%;
-  right: 50%;
+  right: 55%;
   transform: translate(-50%, -50%);
   width: 400px;
   
@@ -596,3 +596,26 @@ h3 {
 
 
 
+.typing { position: relative;
+   margin-left: lOpx; } 
+.typing::after { content: "";
+   position: absolute; 
+   width: 1px;
+    height: 5%; 
+    border-right: 
+    2px solid ■white; 
+  } 
+
+
+
+
+  .typing1 { position: relative;
+    margin-left: lOpx; } 
+ .typing1::after { content: "";
+    position: absolute; 
+    width: 1px;
+     height: 5%; 
+     border-right: 
+     2px solid ■white; 
+   } 
+   
