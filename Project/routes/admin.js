@@ -6,7 +6,7 @@ const router = Router();
 
 //Admin Home
 router.get('/admin/home' , authentication.isAdminLoggedIn ,(req , res)=> {
-  res.render('admin_home' , { user : req.userData });
+  res.render('admin/admin' , { user : req.userData });
 });
 
 
@@ -82,14 +82,26 @@ router
 .post('/admin/accessdonorprofile', authentication.isAdminLoggedIn, ( req, res)=>{
   
   var username = req.body.username;
-  
-  let sql = `SELECT * FROM donor 
-             INNER JOIN personal_info
-             ON donor.donor_info_ID= personal_info.Username
-             WHERE Username = '${username}'`;
+  let sql =  `SELECT FirstName, LastName, Gender, Bday, Blood_type, RhesusFactor, Date_Donated, 
+  Donation_Location, Amount, Duration, COUNT(donation_history.ID) AS Total
+  FROM donor 
+  INNER JOIN personal_info
+  ON donor.donor_info_ID= personal_info.Username
+  INNER JOIN appointment
+  ON donor.donor_info_ID = appointment.donor_username
+  INNER JOIN static_health_info
+  ON donor.donor_info_ID = static_health_info.donorUsername
+  INNER JOIN donor_health
+  ON donor.donor_info_ID = donor_health.donor_ID
+  INNER JOIN donation_history
+  ON donor_health.donation_history_ID = donation_history.ID
+  INNER JOIN inventory
+  ON donor_health.inventory_ID = inventory.BloodBagNo
+  WHERE Username = '${username}'`;
+
   
  db.query(sql, (error , result) =>{
-    res.render("donor/DonorProfile", { created: true,  user: result , admin:false, access: false});
+    res.render("admin/accessdonor", { created: true,  user: result , admin:false, access: false});
   });
 
 });

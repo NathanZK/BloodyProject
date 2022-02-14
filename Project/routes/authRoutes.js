@@ -75,6 +75,11 @@ let sql2 = `SELECT * FROM donor
      
 });
 
+router.get('/logout' , (req , res)=> {
+  res.cookie('jwt' , '' , {maxAge:1});
+  res.redirect('/login')
+});
+
 //Example pages
 // router.get('/Admin_home' , authentication.isAdminLoggedIn ,(req , res)=> {
 //   res.render('admin_home' , { user : req.userData });
