@@ -64,3 +64,7 @@ if (letter2.length === currentText2.length)
 } 
 setTimeout(type, 200);
 })();
+
+
+
+

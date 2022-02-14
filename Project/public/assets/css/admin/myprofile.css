@@ -121,7 +121,7 @@ h3 {
     rgba(255, 255, 255, 0.1)
   );
   border-radius: 2rem;
-  z-index: 2;
+  z-index: 0;
   backdrop-filter: blur(2rem);
   display: flex;
   position: relative;
@@ -219,6 +219,7 @@ h3 {
 .percentage {
   font-weight: bold;
   background: linear-gradient(to right top, var(--quaternary-color), var(--tertiary-color));
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -254,7 +255,7 @@ h3 {
   margin: 25px 0;
  
   font-size: 0.9em;
-  width:325px;
+  width:315px;
   height:620px;
   border-radius: 5px 5px 0 0;
   overflow: hidden;

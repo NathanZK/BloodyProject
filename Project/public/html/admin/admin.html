@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <title>Donate | Easier than ever</title>
     <link rel="stylesheet" href="../../assets/css/nav/nav.css">
+    <link rel="stylesheet" href="../../assets/css/admin/admin.css">
 
   </head>
   <body>
@@ -17,11 +18,13 @@
           
         <div class="dropdown">
             <button><a href="#" class="home"><h4>HOME<h4></a></button>
+
+              <button><a href="#" class="myprofile"><h4>MY PROFILE<h4></a></button>
             <div class="profile">
               <button><h4>PROFILE<h4></button>
               <ul class="hide">
                 <li><a href="#"><h4>CREATE D. PROFILE</h4></a></li>
-                <li><a href="#"><h4>CREATE D. PROFILE</h4></a></li>
+                <li><a href="#"><h4>ACCESS D. PROFILE</h4></a></li>
                 
               </ul>
             </div>
@@ -46,6 +49,68 @@
       </nav>
   
     </header>
+
+
+
+    <div class="body">
+ 
+
+
+       
+     
+      <div class="right">
+        
+
+        <div class="wrapper">
+         <H1 class="typing">MEET BLOOD DONATION</H1>
+         <p>🩸Number one Blood Unit Provider in Africa.
+           <br>
+           🩺We are the reason behind lives of millions!
+         </p>
+          
+          </ul>
+        </div>
+        
+      </div>
+
+        <div class="left">
+            <img id="img" class="myimg" src="../../assets/images/downloadnow.png" alt="image" width="600px" height="490px">
+          
+        </div>
+
+
+
+
+    </div>
+     
+
+<script >
+
+
+const texts = ["WELCOME BACK, GOOD DAY","ሰላም፤ እንኳን ወደ ደም ልገሳ መጡ", "ዛሬ ቀኑ ደስ ይላል","HARDWORK PAYS YOU BACK"];
+ let count = 0; 
+ let index = 0;
+  let currentText = "";
+   let letter = ""; 
+
+(function type() { 
+    if (count === texts.length) { count = 0;
+ } 
+ currentText = texts[count];
+  letter = currentText.slice(0, ++index); 
+
+document.querySelector(".typing").textContent = letter; 
+if (letter.length === currentText.length) 
+{ count++;
+     index = 0; 
+} 
+setTimeout(type, 200);
+})(); 
+</script>
+
+
+
+
 
 
 

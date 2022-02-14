@@ -137,12 +137,12 @@ main {
     margin: auto;
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
   }
   
-  .profile, .changep, .inventory, .testresult, .home, .logout {
+  .profile, .changep, .inventory, .testresult, .home, .logout, .myprofile {
     position: relative;
   }
   
@@ -367,7 +367,7 @@ h3 {
 .profile a,
  .changep a,
 .testresult a, .profile a,
-.appointment a, .result a {
+.appointment a, .result a , .myprofile{
   color: var(--sixth-color);
   text-decoration: none;
   float: none;
@@ -379,7 +379,7 @@ h3 {
 
 
 .dropdown button,
-.home, .logout, .changep, .testresult, .dprofile, .appointment, .result {
+.home, .logout, .changep, .myprofile, .testresult, .dprofile, .appointment, .result {
   
   background: none;
   text-decoration: none;
